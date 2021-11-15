@@ -26,7 +26,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "user")
-@Inheritance(strategy = InheritanceType.JOINED)
 public class User implements UserDetails {
 	private static final long serialVersionUID = 1L;
 	
@@ -57,6 +56,9 @@ public class User implements UserDetails {
 	@Enumerated(EnumType.STRING)
 	private Set<AccessLevel> accessLevels;
 
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Applicant applicant;
+	
 	
 	public User() {	}
 
@@ -132,6 +134,14 @@ public class User implements UserDetails {
 
 	public void setAccessLevels(Set<AccessLevel> accessLevels) {
 		this.accessLevels = accessLevels;
+	}
+
+	public Applicant getApplicant() {
+		return applicant;
+	}
+
+	public void setApplicant(Applicant applicant) {
+		this.applicant = applicant;
 	}
 
 	@Override

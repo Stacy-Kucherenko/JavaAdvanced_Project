@@ -43,7 +43,7 @@ public class RegistrationController {
 	public String registerUser(
 			@RequestParam("g-recaptcha-response") String reCaptchaResponse,
 			@RequestParam String confirmPassword,
-			@Validated User user,
+			@Valid User user,
 			BindingResult bindingResult,
 			Model model,
 			RedirectAttributes redir) {
