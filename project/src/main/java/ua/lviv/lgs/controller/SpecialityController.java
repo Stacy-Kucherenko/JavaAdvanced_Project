@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ua.lviv.lgs.domain.Speciality;
+import ua.lviv.lgs.service.FacultyService;
+import ua.lviv.lgs.service.RatingListService;
+import ua.lviv.lgs.service.SpecialityService;
 
 @Controller
 @RequestMapping("/speciality")
@@ -31,7 +34,7 @@ public class SpecialityController {
 	@GetMapping
 	public String viewSpecialityList(Model model) {
 		List<Speciality> specialitiesList = specialityService.findAll();
-		Map<Speciality, Integer> submittedApps = ratingListService.parseApplicationsBySpeciality();
+		Map<Speciality, Integer> submittedApps = ratingListService.parseNumberOfApplicationsBySpeciality();
 		model.addAttribute("specialities", specialitiesList);
 		model.addAttribute("submittedApps", submittedApps);
 

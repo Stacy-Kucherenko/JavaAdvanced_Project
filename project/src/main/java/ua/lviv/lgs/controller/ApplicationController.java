@@ -1,11 +1,11 @@
 package ua.lviv.lgs.controller;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 
 import ua.lviv.lgs.domain.AccessLevel;
 import ua.lviv.lgs.domain.Application;
@@ -47,7 +48,7 @@ public class ApplicationController {
 		List<Application> applicationsList = applicationService.findByApplicant(user.getApplicant());
 		model.addAttribute("applications", applicationsList);
 		model.addAttribute("applicationsStatus", applicationService.getApplicationsStatus(applicationsList));
-		session.setAttribute("specialities", ratingListService.findSpecialitiesByApplicant(user.getId()));
+		session.setAttribute("specialities", ratingListService.findSpecialitiesAppliedByApplicant(user.getId()));
 		
 		return "applicationList";
 	}
