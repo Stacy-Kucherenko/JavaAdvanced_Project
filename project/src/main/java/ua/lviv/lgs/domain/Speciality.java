@@ -143,4 +143,3 @@ public class Speciality implements Serializable {
 		return "Speciality [id=" + id + ", title=" + title + ", enrollmentPlan=" + enrollmentPlan + "]";
 	}
 }
-
